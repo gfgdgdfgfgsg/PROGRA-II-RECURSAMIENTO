@@ -1,0 +1,31 @@
+package Constantes;
+
+public class Principal {
+public static void main(String[] args) {
+Persona personal = new Persona("Diana", 18);
+personal.setEdad(19);
+personal.mostrarDatos();
+}
+}
+
+
+package Constantes;
+
+public class Persona {
+private final String nombre;
+private int edad;
+public Persona(String nombre, int edad) {
+this.nombre = nombre;
+this.edad = edad;
+}
+public void mostrarDatos(){
+System.out.println("El nombre es:" +nombre);
+System.out.println("La edad es:" + edad);
+}
+public int getEdad() {
+return edad;
+}
+public void setEdad(int edad) {
+this.edad = edad;
+}
+}
