@@ -7,7 +7,7 @@ public class Mouse_Encapsulamiento {
         Scanner scanner = new Scanner(System.in);
         Computadora_Encapsulamiento computadora = new Computadora_Encapsulamiento();
 
-        System.out.println("Ingrese 0 para Apagar o 1 para Encender:");
+        System.out.println("Selecciona 1 como un clic y 0 para soltar el clic");
         int opcion = scanner.nextInt();
 
         if (opcion == 0) {
