@@ -1,44 +1,39 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
     
     public static void main(String[] args) {
-        // Crear una lista para almacenar triángulos
-        List<TrianguloIsosceles> triangulos = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        String continuar;
 
-        do {
-            // Solicitar al usuario las dimensiones del triángulo
+        // Solicitar al usuario la cantidad de triángulos
+        System.out.print("Ingrese la cantidad de triángulos que desea ingresar: ");
+        int cantidad = scanner.nextInt();
+
+        // Crear un arreglo para almacenar triángulos
+        TrianguloIsosceles[] triangulos = new TrianguloIsosceles[cantidad];
+
+        // Obtener los valores de base y lado para cada triángulo
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println("\nTriángulo " + (i + 1) + ":");
             System.out.print("Ingrese la longitud de los lados iguales: ");
             double lado = scanner.nextDouble();
             System.out.print("Ingrese la longitud de la base: ");
             double base = scanner.nextDouble();
 
-            // Crear un nuevo triángulo y añadirlo a la lista
-            TrianguloIsosceles triangulo = new TrianguloIsosceles(lado, base);
-            triangulos.add(triangulo);
-
-            // Mostrar el perímetro y el área del triángulo
-            System.out.println("Triángulo creado: " + triangulo);
-            System.out.println("Perímetro: " + triangulo.calcularPerimetro());
-            System.out.println("Área: " + triangulo.calcularArea());
-
-            // Preguntar si desea continuar
-            System.out.print("¿Desea agregar otro triángulo? (s/n): ");
-            continuar = scanner.next();
-        } while (continuar.equalsIgnoreCase("s"));
-
-        // Mostrar todos los triángulos creados
-        System.out.println("\nTriángulos creados:");
-        for (TrianguloIsosceles t : triangulos) {
-            System.out.println(t);
+            // Crear un nuevo triángulo y añadirlo al arreglo
+            triangulos[i] = new TrianguloIsosceles(lado, base);
         }
 
-        // Calcular y mostrar el triángulo con mayor área
-        TrianguloIsosceles mayorTriangulo = mayorArea(triangulos.toArray(new TrianguloIsosceles[0]));
+        // Mostrar el área y el perímetro de cada triángulo
+        for (int i = 0; i < triangulos.length; i++) {
+            TrianguloIsosceles t = triangulos[i];
+            System.out.println("\nTriángulo " + (i + 1) + ": " + t);
+            System.out.println("Perímetro: " + t.calcularPerimetro());
+            System.out.println("Área: " + t.calcularArea());
+        }
+
+        // Llamar al método mayorArea para determinar el triángulo con mayor área
+        TrianguloIsosceles mayorTriangulo = mayorArea(triangulos);
         if (mayorTriangulo != null) {
             System.out.println("\nTriángulo con mayor área: " + mayorTriangulo);
             System.out.println("Área mayor: " + mayorTriangulo.calcularArea());
