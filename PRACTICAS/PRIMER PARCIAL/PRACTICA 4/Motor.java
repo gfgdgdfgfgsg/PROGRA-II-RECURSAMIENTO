@@ -10,9 +10,9 @@ public class Motor {
     private boolean encendido;       // Indica si el motor se encuentra funcionando.
     private Random r;                // Utilizado para motivos de simulación del entorno del motor.
     
-    
-      Inicializa un nuevo objeto Motor.
-     
+    /**
+     * Inicializa un nuevo objeto Motor.
+     */
     public Motor() {
         aire = 0;
         combustible = 0;
@@ -20,9 +20,10 @@ public class Motor {
         encendido = false;
         r = new Random();
     }
-   
-     Llena el cilindro con la cantidad y proporción necesarias de aire y combustible para que se realice la combustión.
-   
+    
+    /**
+     * Llena el cilindro con la cantidad y proporción necesarias de aire y combustible para que se realice la combustión.
+     */
     private void prepararMezcla() {
         while (!(Math.abs(aire - combustible) < 5 && (aire > 50 && combustible > 50))) {
             aire += r.nextInt(10);
@@ -31,20 +32,20 @@ public class Motor {
         piston = false;
     }
     
-   
-      Sube el cilindro para comprimir la mezcla de aire y combustible. Además se asegura que la bujía esté apagada.
-    
+    /**
+     * Sube el cilindro para comprimir la mezcla de aire y combustible. Además se asegura que la bujía esté apagada.
+     */
     private void comprimirMezcla() {
         piston = true;
         bujia = false;
     }
     
-   
-      Enciende la bujía el tiempo necesario para que la combustión se realice y la apaga después. 
-     Posteriormente, convierte la energía química de la combustión en energía mecánica, que se
-      transfiere al cigüeñal para aumentar las revoluciones del motor. El resto de la energía química
-      se elimina a través del escape.
-    
+    /**
+     * Enciende la bujía el tiempo necesario para que la combustión se realice y la apaga después. 
+     * Posteriormente, convierte la energía química de la combustión en energía mecánica, que se
+     * transfiere al cigüeñal para aumentar las revoluciones del motor. El resto de la energía química
+     * se elimina a través del escape.
+     */
     private void encenderMezcla() {
         bujia = true;
         bujia = false;
@@ -54,18 +55,18 @@ public class Motor {
         eliminarDesechos(energia);
     }
     
-   
-      Elimina los desechos producidos tras realizar la combustión en el cilindro.
-     
+    /**
+     * Elimina los desechos producidos tras realizar la combustión en el cilindro.
+     */
     private void eliminarDesechos(double residuos) {
         while (residuos > 0) {
             residuos -= r.nextDouble();
         }
     }
 
-   
-      Realiza el ciclo de revoluciones del motor si está encendido.
-   
+    /**
+     * Realiza el ciclo de revoluciones del motor si está encendido.
+     */
     public void revolucionar() {
         if (encendido) {
             prepararMezcla();
@@ -74,4 +75,5 @@ public class Motor {
         }
     }
 }
+
 
