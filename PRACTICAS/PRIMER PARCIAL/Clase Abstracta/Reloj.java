@@ -3,17 +3,23 @@ import java.util.*;
 public class Reloj extends TareaPeriodica {
 
     public Reloj() {
-        super(60);
+        super(60); // Asumiendo que el periodo es de 60 segundos
     }
 
     public boolean necesitaEjecucion() {
-        // Implementación simple que siempre retorna true
-        return true; // O lógica específica para el reloj
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(ultimaEjecucion);
+        cal.add(Calendar.SECOND, periodo);
+        Calendar ahora = new GregorianCalendar();
+        return ahora.before(cal);
     }
 
     public int ejecutarTarea() {
-        // Aquí podrías implementar alguna lógica relacionada con el reloj
-        System.out.println("Ejecutando tarea del reloj.");
+        Calendar c = new GregorianCalendar();
+        System.out.println(String.format("%d:%d:%d", 
+            c.get(Calendar.HOUR_OF_DAY), 
+            c.get(Calendar.MINUTE), 
+            c.get(Calendar.SECOND)));
         return 0; // Retorna 0 para indicar éxito
     }
 
