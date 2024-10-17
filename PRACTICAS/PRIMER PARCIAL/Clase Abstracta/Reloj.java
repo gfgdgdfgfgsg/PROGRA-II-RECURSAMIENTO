@@ -1,9 +1,8 @@
 import java.util.*;
 
 public class Reloj extends TareaPeriodica {
-
     public Reloj() {
-        super(60); // Asumiendo que el periodo es de 60 segundos
+        super(60);
     }
 
     public boolean necesitaEjecucion() {
@@ -21,6 +20,12 @@ public class Reloj extends TareaPeriodica {
             c.get(Calendar.MINUTE), 
             c.get(Calendar.SECOND)));
         return 0; // Retorna 0 para indicar éxito
+    }
+
+    public void run() {
+        if (this.necesitaEjecucion()) {
+            this.ejecutarTarea();
+        }
     }
 
     public String leerHora() {
